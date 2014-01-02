@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Heroku uses the ruby version to configure your application's runtime.
-ruby '2.0.0'
+ruby '2.1.0'
 
 gem 'unicorn'
 gem 'rack-canonical-host'
@@ -18,6 +18,17 @@ gem 'simple_form', '~> 3.0'
 gem 'uglifier'
 
 gem 'awesome_print'
+
+gem 'paperclip', "~>3.0"
+gem 'pdf-reader'
+gem 'ots'
+gem 'resque', github: "resque/resque", branch: "1-x-stable"
+gem 'resque-status'
+gem 'resque-web', require: 'resque_web'
+gem 'css3-progress-bar-rails'
+
+
+# gem 'highscore'
 
 # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
 gem 'therubyracer', platforms: :ruby

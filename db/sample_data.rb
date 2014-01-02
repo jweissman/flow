@@ -9,3 +9,6 @@
 #
 # Data that is required by the application across all environments (i.e. reference data) should _not_ be included here.
 # That belongs in seeds.rb instead.
+
+Component.create name: 'blah'
+Document.create_or_update name: 'explosion'

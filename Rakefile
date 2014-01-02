@@ -13,3 +13,9 @@ Rake::Task['db:structure:dump'].clear unless Rails.env.development?
 # Spec is the default rake target.
 task(:default).clear
 task default: 'spec'
+
+require 'resque/tasks'
+task "resque:setup" do
+  ENV['QUEUE'] = '*'
+end
+

@@ -1,0 +1,10 @@
+
+/- if can? :edit, @document
+= link_to 'Edit', edit_document_path(document), class: 'btn btn-mini'
+- unless document.content.blank?
+  = link_to 'Analyze', analyze_document_path(document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
+- unless document.content.present?
+  = link_to 'Extract', extract_document_path(document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
+/- if can? :destroy, document
+= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-mini btn-danger'
+
