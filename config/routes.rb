@@ -6,8 +6,6 @@ Flow::Application.routes.draw do
     post 'extract', on: :member
   end
 
-  # resources :components
-
   root to: 'pages#root'
 
   mount ResqueWeb::Engine => "/resque_web"

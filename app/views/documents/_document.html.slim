@@ -1,0 +1,13 @@
+i.icon.icon-5x.icon-file-text.muted
+p.lead
+  = link_to document.name, document_path(document)
+
+small.text-muted summary
+p= document.brief_summary
+
+b.text-center Random Sentence
+p.text-success 
+  i.icon.icon-quote-left.muted.pull-left
+  = document.sentences.sample
+
+== render 'actions', :document => document

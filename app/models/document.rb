@@ -3,9 +3,21 @@ require 'ots'
 class Document < ActiveRecord::Base
   has_attached_file :source, :path => ':rails_root/public/documents:url'
   # validates_attachment :document, content_type: { content_type: "application/pdf" }
+  #
+
+  # after_post_process :extract_content
 
   def sentences
-    @sentences ||= self.content.split('.').reject { |s| s.blank? }
+    @sentences ||= self.content.try { |c| c.split('.').reject { |s| s.blank? } }
+  end
+
+  def brief_summary
+    self.summary.try { |s| s[0,255] }
+  end
+
+  def analyze
+    summarize
+    # keywords
   end
 
   def summarize
@@ -18,11 +30,12 @@ class Document < ActiveRecord::Base
     # self.worker_id = SummarizeContentJob.create(:document_id => self.id)
     # Rails.logger.info "--- using worker id: #{self.worker_id}"
     Resque.enqueue SummarizeContentJob, self.id # :document_id => self.id
-    
+
     true
   end
 
   def extract_content
+
     unless self.content.blank? 
       self.errors.add :base, 'cannot analyze with content present' 
       return false

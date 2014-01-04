@@ -1,26 +1,33 @@
 .page-header
-  h1 Document
+  h1 
+    = @document.name
+    small review
 
-dl
-  dt Name
-  dd= @document.name
-  dt Description
-  dd= @document.description
-  dt Content
-  dd= @document.content[0,140]
-  dt Source
-  dd
-    = link_to @document.source_file_name, @document.source.url
-  dt Summary
-  dd= @document.summary
+= render @document
 
-  - if @document.worker_progress
-    dt Worker Status
-    dd= bootstrap_progress_bar(@document.worker_progress, :color => 'info', :striped => true)
-
+/-.page-header
+/-  h1 Document
+/-
+/-dl
+/-  dt Name
+/-  dd= @document.name
+/-  dt Description
+/-  dd= @document.description
+/-  dt Content
+/-  dd= @document.content[0,140]
+/-  dt Source
+/-  dd
+/-    = link_to @document.source_file_name, @document.source.url
+/-  dt Summary
+/-  dd= @document.summary
+/-
+/-  - if @document.worker_progress
+/-    dt Worker Status
+/-    dd= bootstrap_progress_bar(@document.worker_progress, :color => 'info', :striped => true)
+/-
 /- if can?(:edit, @document)
 
-== render 'actions', :document => @document 
+/== render 'actions', :document => @document 
 /= link_to 'Edit', edit_document_path(@document), class: 'btn'
 /
 /= link_to 'Extract', extract_document_path(@document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'

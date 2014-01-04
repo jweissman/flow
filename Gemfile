@@ -11,6 +11,8 @@ gem 'pg'
 gem 'slim-rails'
 gem 'less-rails'
 gem 'less-rails-bootstrap', '~> 3.0.3'
+gem 'less-rails-fontawesome'
+gem 'css3-progress-bar-rails'
 gem 'jquery-rails'
 gem 'coffee-rails'
 gem 'turbolinks'
@@ -20,15 +22,15 @@ gem 'uglifier'
 gem 'awesome_print'
 
 gem 'paperclip', "~>3.0"
-gem 'pdf-reader'
-gem 'ots'
+
+gem 'highscore'
+
 gem 'resque', github: "resque/resque", branch: "1-x-stable"
 gem 'resque-status'
 gem 'resque-web', require: 'resque_web'
-gem 'css3-progress-bar-rails'
 
-
-# gem 'highscore'
+gem 'pdf-reader'
+gem 'ots'
 
 # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
 gem 'therubyracer', platforms: :ruby
@@ -45,9 +47,10 @@ group :test, :development do
   gem 'jasminerice', github: 'bradphelan/jasminerice' # Latest release still depends on haml.
   #gem 'timecop'
   gem 'simplecov'
-  #gem 'cane'
+  gem 'cane'
   #gem 'morecane'
   #gem 'quiet_assets'
+  gem 'excellent'
 end
 
 group :development do

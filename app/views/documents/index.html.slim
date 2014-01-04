@@ -1,34 +1,41 @@
 div.page-header
-  h1 Listing documents
+  h2 
+    span list
+    small documents
 
-table.table.table-striped
-  thead
-    tr
-      th ID
-      th Name
-      th Description
-      th Summary
-      th Random Sentence
-      th Actions
+p.text-center= link_to 'Import New Document', new_document_path, class: 'btn btn-primary'
 
-  tbody
-  - @documents.each do |document|
-    tr
-      /td= link_to_if can?(:show, document), document.id, document_path(document)
-      td= link_to document.id, document_path(document)
-      td= document.name
-      td= document.description
-      td= document.summary
-      td= document.sentences.sample
-      td
-        == render 'actions', :document => document 
-        /-#, :locals => { :document => document }
-        /- if can? :edit, document
-        /= link_to 'Edit', edit_document_path(document), class: 'btn btn-mini'
-        /= link_to 'Analyze', analyze_document_path(document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
-        //- if can? :destroy, document
-        /= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-mini btn-danger'
-        /= link_to 'Extract', extract_document_path(@document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
+.row
+  - @documents.each do |document| 
+    .col-md-4= render document
 
+/-table.table.table-striped
+/-  thead
+/-    tr
+/-      th ID
+/-      th Name
+/-      th Description
+/-      th Summary
+/-      th Random Sentence
+/-      th Actions
+/-
+/-  tbody
+/-  - @documents.each do |document|
+/-    tr
+/-      /td= link_to_if can?(:show, document), document.id, document_path(document)
+/-      td= link_to document.id, document_path(document)
+/-      td= document.name
+/-      td= document.description
+/-      td= document.summary
+/-      td= document.sentences.sample
+/-      td
+/-        == render 'actions', :document => document 
+/-        /-#, :locals => { :document => document }
+/-        /- if can? :edit, document
+/-        /= link_to 'Edit', edit_document_path(document), class: 'btn btn-mini'
+/-        /= link_to 'Analyze', analyze_document_path(document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
+/-        //- if can? :destroy, document
+/-        /= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-mini btn-danger'
+/-        /= link_to 'Extract', extract_document_path(@document), method: :post, data: { confirm: 'Really kickoff analysis?' }, class: 'btn btn-info'
+/-
 /- if can? :create, Document
-= link_to 'New Document', new_document_path, class: 'btn btn-primary'
